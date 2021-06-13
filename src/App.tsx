@@ -1,24 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { createContext } from 'react';
 import './App.css';
+// import { LinkInput } from './components/LinkInput'
+import * as dotenv from "dotenv";
+import { LinkInput } from './components/LinkInput';
+
+dotenv.config();
+
+export const YoutubeMoviesContext = createContext([]);
 
 function App() {
+
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>Your favourite YouTube movies</p>
       </header>
+      <LinkInput />
+
+      <div>
+      </div>
     </div>
   );
 }
