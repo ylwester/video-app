@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import * as dotenv from "dotenv";
-// import { getYoutubeMovie } from "../utils/youtubeMovieUtils";
 import axios from "axios";
 import { getYouTubeID } from "../utils/youtubeMovieUtils";
 import { getTodaysDate, saveMovieToLocalStorage } from "../utils/utilities";
@@ -9,18 +8,10 @@ dotenv.config();
 
 interface LinkInputProps {}
 
-interface Movie {
-  id: string,
-  title: string,
-  thumbnail: string,
-  views: number,
-  likes: number,
-  addDate: string,
-}
 
 export const LinkInput: React.FC<LinkInputProps> = () => {
   const [linkInput, setLinkInput] = useState("");
-  const [movie, setMovie] = useState<Movie>();
+  const [movie, setMovie] = useState<IMovie>();
 
   useEffect(()=> {
     saveMovieToLocalStorage(movie);
@@ -47,7 +38,7 @@ export const LinkInput: React.FC<LinkInputProps> = () => {
               setMovie({
           id: response.data.items[0].id,
           title: response.data.items[0].snippet.title,
-          thumbnail: response.data.items[0].snippet.thumbnails.standard.url,
+          thumbnail: response.data.items[0].snippet.thumbnails.default.url,
           views: response.data.items[0].statistics.viewCount,
           likes: response.data.items[0].statistics.likeCount,
           addDate: getTodaysDate(), 
