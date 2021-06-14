@@ -3,6 +3,7 @@ import * as dotenv from "dotenv";
 import axios from "axios";
 import { getYouTubeID } from "../utils/youtubeMovieUtils";
 import { getTodaysDate, saveMovieToLocalStorage } from "../utils/utilities";
+import '../styles/linkInput.css'
 
 dotenv.config();
 
@@ -38,7 +39,7 @@ export const LinkInput: React.FC<LinkInputProps> = () => {
               setMovie({
           id: response.data.items[0].id,
           title: response.data.items[0].snippet.title,
-          thumbnail: response.data.items[0].snippet.thumbnails.default.url,
+          thumbnail: response.data.items[0].snippet.thumbnails.standard.url,
           views: response.data.items[0].statistics.viewCount,
           likes: response.data.items[0].statistics.likeCount,
           addDate: getTodaysDate(), 
@@ -49,7 +50,7 @@ export const LinkInput: React.FC<LinkInputProps> = () => {
 
 
   return (
-    <div>
+    <div className="link-input-container">
       <form onSubmit={handleSubmit}>
       <input
         type="text"

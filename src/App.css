@@ -1,0 +1,19 @@
+body {
+    margin: auto;
+}
+
+.App {
+    margin: 0 auto;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
