@@ -4,6 +4,7 @@ import axios from "axios";
 import { getYouTubeID } from "../utils/youtubeMovieUtils";
 import { getTodaysDate, saveMovieToLocalStorage } from "../utils/utilities";
 import '../styles/linkInput.css'
+import { useYoutubeMovieContext } from "../App";
 
 dotenv.config();
 
@@ -13,12 +14,13 @@ interface LinkInputProps {}
 export const LinkInput: React.FC<LinkInputProps> = () => {
   const [linkInput, setLinkInput] = useState("");
   const [movie, setMovie] = useState<IMovie>();
+  const {setMovies} = useYoutubeMovieContext();
 
   useEffect(()=> {
     saveMovieToLocalStorage(movie);
-    console.log(movie)
     console.log(JSON.parse(localStorage.getItem('movies')!))
-  }, [movie])
+    setMovies(JSON.parse(localStorage.getItem('movies')!));
+  }, [movie, setMovies])
 
 
   const handleSubmit = (e : React.FormEvent<HTMLFormElement>) => {
