@@ -7,7 +7,7 @@ import './../styles/GridView.css';
 
 interface GridViewProps {
   movies: IMovie[] | undefined;
-  handleWatch: () => void;
+  handleWatch: (id: string) => void;
   handleDelete: (id: string) => void;
   handleFavourite: (id: string) => void;
 }
@@ -49,7 +49,7 @@ export const GridView: React.FC<GridViewProps> = ({
                   type="button"
                   name="watchbutton"
                   value="Watch"
-                  onClick={handleWatch}
+                  onClick={() => handleWatch(movie.id)}
                 />
                 <input
                   type="button"

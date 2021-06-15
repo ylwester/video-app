@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { useYoutubeMovieContext } from "../App";
 import { GridView } from "./GridView";
 import "../styles/displayMovies.css";
 import { refreshLocalStorage } from "../utils/utilities";
+import { ModalVideo } from "./ModalVideo";
 
 interface DisplayMoviesProps {}
 
 export const DisplayMovies: React.FC<DisplayMoviesProps> = () => {
   const { movies, setMovies } = useYoutubeMovieContext();
-  const handleWatch = () => {
+  const [modal, setModal] = useState(false);
+const [videoId, setVideoId] = useState<string>();
+  const toggle = () => setModal(!modal);
+
+
+  const handleWatch = (id: string) => {
+    setVideoId(id);
+      toggle();
+
     console.log("watch clicked");
   };
 
@@ -35,12 +44,14 @@ export const DisplayMovies: React.FC<DisplayMoviesProps> = () => {
   return (
     <div className="content">
       <h5>Your favourite videos</h5>
+
       <GridView
         movies={movies}
         handleWatch={handleWatch}
         handleDelete={handleDelete}
         handleFavourite={handleFavourite}   
       />
+      <ModalVideo videoId={videoId} toggle={toggle} modal={modal} />
     </div>
   );
 };
