@@ -4,6 +4,7 @@ interface IMovie {
     thumbnail: string,
     views: number,
     likes: number,
+    dislikes: number,
     addDate: string,
-    favourite?: boolean
+    favourite?: boolean 
   }

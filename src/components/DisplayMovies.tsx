@@ -23,6 +23,15 @@ export const DisplayMovies: React.FC<DisplayMoviesProps> = () => {
     console.log("delete clicked" + id);
   };
 
+  const handleFavourite = (id : string) => {
+    if (movies !== undefined) {
+        const result = movies?.findIndex((object) => object.id === id);
+        movies[result].favourite = !movies[result].favourite;
+        refreshLocalStorage(movies);
+        setMovies(JSON.parse(localStorage.getItem('movies')!));
+    }
+  }
+
   return (
     <div className="content">
       <h5>Your favourite videos</h5>
@@ -30,6 +39,7 @@ export const DisplayMovies: React.FC<DisplayMoviesProps> = () => {
         movies={movies}
         handleWatch={handleWatch}
         handleDelete={handleDelete}
+        handleFavourite={handleFavourite}   
       />
     </div>
   );
