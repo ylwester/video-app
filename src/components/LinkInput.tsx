@@ -42,7 +42,8 @@ export const LinkInput: React.FC<LinkInputProps> = () => {
           thumbnail: response.data.items[0].snippet.thumbnails.standard.url,
           views: response.data.items[0].statistics.viewCount,
           likes: response.data.items[0].statistics.likeCount,
-          addDate: getTodaysDate(), 
+          addDate: getTodaysDate(),
+          favourite: false, 
         });
     })
     .catch(error => console.log(error));

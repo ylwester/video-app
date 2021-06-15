@@ -7,6 +7,10 @@ interface MovieCardProps {
   movie: IMovie,
 }
 
+function numberWithCommas(x : number) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 export const MovieCard: React.FC<MovieCardProps> = ({movie}) => {
         return (
 
@@ -16,17 +20,16 @@ export const MovieCard: React.FC<MovieCardProps> = ({movie}) => {
             </div>
             <div className="card-statistics">
               <div className="stats-views">
-                <IoMdEye /> {movie.views}
+                <IoMdEye /> {numberWithCommas(movie.views)}
                 </div>
                 <div className="stats-likes">
-                 <BiLike/> {movie.likes}
+                 <BiLike/> {numberWithCommas(movie.likes)}
               </div>
             </div>
             <div className="card-title">
               {
                 movie.title
               }
-
             </div>
             <div>
               buttony

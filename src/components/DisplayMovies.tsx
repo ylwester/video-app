@@ -1,22 +1,25 @@
 import React from "react";
 import { useYoutubeMovieContext } from "../App";
-import { MovieCard } from "./MovieCard";
+import { GridView } from "./GridView";
 import '../styles/displayMovies.css';
 
 interface DisplayMoviesProps {}
 
 export const DisplayMovies: React.FC<DisplayMoviesProps> = () => {
-  const { movies } = useYoutubeMovieContext();
+    const { movies } = useYoutubeMovieContext();
+const handleWatch = () => {
+    console.log('watch clicked');
+}
+
+const handleDelete = () => {
+    console.log('delete clicked');
+}
+
   return (
-    <div className="movies-container">
+    <div className="content">
       <h5>Your favourite videos</h5>
-      <div className="movies-container">
-          {
-              movies?.length !== 0 ? movies?.map(movie => (
-                    <MovieCard movie={movie} />
-               )) : null
-          }
-      </div>
+      <GridView movies={movies} handleWatch={handleWatch} handleDelete={handleDelete} />
     </div>
   );
 };
+
