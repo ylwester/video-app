@@ -7,7 +7,7 @@ import { numberWithCommas } from "../utils/utilities";
 interface GridViewProps {
   movies: IMovie[] | undefined;
   handleWatch: () => void;
-  handleDelete: () => void;
+  handleDelete: (id: string) => void;
  }
 
 export const GridView: React.FC<GridViewProps> = ({ movies, handleWatch, handleDelete }) => {
@@ -35,7 +35,7 @@ export const GridView: React.FC<GridViewProps> = ({ movies, handleWatch, handleD
               <div className="card-title">{movie.title}</div>
               <div>buttony
                   <input type="button" name="watchbutton" value="Obejrzyj" onClick={handleWatch} />
-                  <input type="button" name="deletebutton" value="Usuń" onClick={handleDelete} />
+                  <input type="button" name="deletebutton" value="Usuń" onClick={() => handleDelete(movie.id)} />
 
               </div>
             </div>

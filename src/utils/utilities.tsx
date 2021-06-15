@@ -22,12 +22,15 @@ export function getTodaysDate() : string {
     if(!movie)
     return
 
-
       let myArray = [];
       myArray.push(moviesStorage);
       localStorage.setItem('movies', JSON.stringify(moviesStorage));
 
 
+  }
+
+  export function refreshLocalStorage(movies: IMovie[]){
+    localStorage.setItem('movies', JSON.stringify(movies));
   }
 
 
