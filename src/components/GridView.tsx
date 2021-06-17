@@ -43,8 +43,7 @@ export const GridView: React.FC<GridViewProps> = ({
                 </div>
               </div>
               <div className="card-title">{movie.title}</div>
-              <div>
-                buttony
+              <div className="card-buttons">
                 <input
                   type="button"
                   name="watchbutton"
