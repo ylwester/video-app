@@ -1,5 +1,6 @@
 import React from "react";
 import { Modal } from "reactstrap";
+import './../styles/modalVideo.css'
 
 interface ModalVideoProps {
   toggle: () => void;
@@ -16,10 +17,10 @@ export const ModalVideo: React.FC<ModalVideoProps> = ({
 
   return (
     <div>
-      <Modal style={{width: "560px", height: "315px"}} isOpen={modal} toggle={toggle}>
+      <Modal centered size="lg" style={{maxWidth: "1120px", width: "100%", height: "630px"}} isOpen={modal} toggle={toggle}>
           <iframe
-            width="560"
-            height="315"
+            width="1120"
+            height="630"
             src={`https://www.youtube.com/embed/${videoId}`}
             title="YouTube video player"
             frameBorder="0"

@@ -30,6 +30,7 @@ export const LinkInput: React.FC<LinkInputProps> = () => {
       process.env.REACT_APP_YOUTUBE_API_KEY;
 
     fetchData(API_URL);
+    setLinkInput('');
   };
 
   function fetchData(apiurl: string) {
@@ -44,13 +45,14 @@ export const LinkInput: React.FC<LinkInputProps> = () => {
         setMovie({
           id: response.data.items[0].id,
           title: response.data.items[0].snippet.title,
-          thumbnail: response.data.items[0].snippet.thumbnails.standard.url,
+          thumbnail: response.data.items[0].snippet.thumbnails.medium.url,
           views: response.data.items[0].statistics.viewCount,
           likes: response.data.items[0].statistics.likeCount,
           dislikes: response.data.items[0].statistics.dislikeCount,
           addDate: getTodaysDate(),
           favourite: false,
         });
+
       })
       .catch((error) => console.log(error));
   }

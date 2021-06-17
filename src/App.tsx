@@ -4,6 +4,7 @@ import * as dotenv from "dotenv";
 import { LinkInput } from "./components/LinkInput";
 import { DisplayMovies } from "./components/DisplayMovies";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { MenuComponent } from "./components/MenuComponent";
 
 dotenv.config();
 
@@ -34,6 +35,7 @@ function App() {
       <section className="content-wrapper">
       <YoutubeMoviesContext.Provider value={{ movies, setMovies }}>
           <LinkInput />
+          <MenuComponent />
           <DisplayMovies />
       </YoutubeMoviesContext.Provider>
       </section>
