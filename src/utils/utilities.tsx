@@ -14,8 +14,8 @@ export function getTodaysDate(): string {
   return day + "." + month + "." + date.getFullYear();
 }
 
-export function saveMovieToLocalStorage(movie: any) {
-  let moviesStorage: any = JSON.parse(localStorage.getItem("movies")!) || [];
+export function saveMovieToLocalStorage(movie: IMovie | undefined) {
+  let moviesStorage = JSON.parse(localStorage.getItem("movies")!) || [];
   console.log(typeof moviesStorage);
   moviesStorage.push(movie);
 
@@ -36,4 +36,8 @@ export function numberWithCommas(x: number) {
 
 export function clearLocalStorage() {
   localStorage.removeItem('movies');
+}
+
+export function saveMultipleMoviesToLocalStorage(ids : string[]) {
+  
 }
