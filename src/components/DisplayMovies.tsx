@@ -10,7 +10,7 @@ interface DisplayMoviesProps {}
 export const DisplayMovies: React.FC<DisplayMoviesProps> = () => {
   const { movies, setMovies } = useYoutubeMovieContext();
   const [modal, setModal] = useState(false);
-const [videoId, setVideoId] = useState<string>();
+  const [videoId, setVideoId] = useState<string>();
   const toggle = () => setModal(!modal);
 
 
