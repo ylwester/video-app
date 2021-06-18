@@ -20,6 +20,7 @@ export const useYoutubeMovieContext = () => useContext(YoutubeMoviesContext);
 
 function App() {
   const [movies, setMovies] = useState<IMovie[]>();
+  const [gridView, setGridView] = useState<Boolean>(true);
 
   useEffect(() => {
     if (localStorage.getItem("movies")) {
@@ -35,8 +36,8 @@ function App() {
       <section className="content-wrapper">
       <YoutubeMoviesContext.Provider value={{ movies, setMovies }}>
           <LinkInput />
-          <MenuComponent />
-          <DisplayMovies />
+          <MenuComponent gridView={gridView} setGridView={setGridView} />
+          <DisplayMovies gridView={gridView} />
       </YoutubeMoviesContext.Provider>
       </section>
     </div>

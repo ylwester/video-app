@@ -1,49 +1,43 @@
 import React from "react";
-import "../styles/movieCard.css";
+import { BiDislike, BiLike } from "react-icons/bi";
 import { IoMdEye, IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
-import { BiLike, BiDislike } from "react-icons/bi";
 import { numberWithCommas } from "../utils/utilities";
-import './../styles/gridView.css';
+import "./../styles/listView.css";
 
-interface GridViewProps {
+interface ListViewProps {
   movies: IMovie[] | undefined;
   handleWatch: (id: string) => void;
   handleDelete: (id: string) => void;
   handleFavourite: (id: string) => void;
 }
 
-export const GridView: React.FC<GridViewProps> = ({
+export const ListView: React.FC<ListViewProps> = ({
   movies,
   handleWatch,
   handleDelete,
   handleFavourite,
 }) => {
   return (
-    <div className="movies-container">
+    <div className="listview-container">
       {movies?.length !== 0
         ? movies?.map((movie) => (
-            <div className="movie-card" key={movie.id}>
-              <div className="thumbnail-img">
-                <img
-                  src={movie.thumbnail}
-                  alt={movie.title}
-                />
+            <div key={movie.id} className="list-item">
+              <div className="list-name-header">
+                <div>{movie.title}</div>
               </div>
-              <div className="card-statistics">
-                <div className="stats-views">
-                  <IoMdEye /> {numberWithCommas(movie.views)}
-                </div>
-                <div className="likes-container">
-                  <div className="stats-likes">
+              <div className="list-item-content">
+                <div className="content-statistics">
+                  <div>
+                    <IoMdEye /> {numberWithCommas(movie.views)}
+                  </div>
+                  <div>
                     <BiLike /> {numberWithCommas(movie.likes)}
                   </div>
-                  <div className="stats-likes">
+                  <div>
                     <BiDislike /> {numberWithCommas(movie.dislikes)}
                   </div>
                 </div>
-              </div>
-              <div className="card-title">{movie.title}</div>
-              <div className="card-buttons">
+                <div>
                 <input
                   type="button"
                   name="watchbutton"
@@ -59,6 +53,7 @@ export const GridView: React.FC<GridViewProps> = ({
                 
                  <button style={{backgroundColor: "transparent", outline: "none", border: "none"}} onClick={() => handleFavourite(movie.id)}> { movie.favourite ? <IoMdHeart /> : <IoMdHeartEmpty /> } </button>
                 
+                </div>
               </div>
             </div>
           ))

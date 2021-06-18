@@ -4,13 +4,14 @@ import { clearLocalStorage } from "../utils/utilities";
 import { getYoutubeVideos } from "../utils/youtubeMovieUtils";
 
 interface MenuComponentProps {
-
+  gridView: Boolean,
+  setGridView: React.Dispatch<React.SetStateAction<Boolean>>,
 }
 
 const DEMO_MOVIES = ['pImrABc4s58', 'AmUrarx3_0U', 'zUaMZzKgxo0'];
 
 
-export const MenuComponent: React.FC<MenuComponentProps> = () => {
+export const MenuComponent: React.FC<MenuComponentProps> = ({gridView, setGridView}) => {
     const { movies, setMovies } = useYoutubeMovieContext();
     const [favouriteFilter, setFavouriteFilter] = useState<Boolean>(false);
 
@@ -38,13 +39,17 @@ export const MenuComponent: React.FC<MenuComponentProps> = () => {
       }
     }
 
+    const handleView = () => {
+      setGridView(!gridView);
+    }
+
     
   return (
     <nav>
       <button onClick={handleClear}>Clear library</button>
       <button onClick={() => handleDemoMovies(DEMO_MOVIES)} >Demo</button>
       <button onClick={handleFavourites}>Favourites</button>
-      <button>Display grid/list</button>
+      <button onClick={handleView}>{gridView ? "Display as List" : "Display as Grid" }</button>
       <button>Sort</button>
     </nav>
   );
