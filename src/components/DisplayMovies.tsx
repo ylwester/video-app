@@ -5,6 +5,8 @@ import "../styles/displayMovies.css";
 import { refreshLocalStorage } from "../utils/utilities";
 import { ModalVideo } from "./ModalVideo";
 import { ListView } from "./ListView";
+import ReactPaginate from 'react-paginate';
+import '../styles/pagination.css';
 
 interface DisplayMoviesProps {
   gridView: Boolean,
@@ -12,9 +14,22 @@ interface DisplayMoviesProps {
   setSortedMovies: React.Dispatch<React.SetStateAction<IMovie[] | undefined>>,
 }
 
+
 export const DisplayMovies: React.FC<DisplayMoviesProps> = ({ sortedMovies, setSortedMovies, gridView }) => {
   const { movies, setMovies } = useYoutubeMovieContext();
   const [modal, setModal] = useState(false);
+  const [pageNumber, setPageNumber] = useState<number>(0)
+
+  const MOVIES_PER_PAGE = 9;
+  const pagesVisited = pageNumber * MOVIES_PER_PAGE;
+
+  let pageCount : number;
+  if(movies)
+    pageCount = Math.ceil(movies.length / MOVIES_PER_PAGE);
+
+    const changePage = ({ selected } : any) => {
+      setPageNumber(selected);
+    };
 
   const [videoId, setVideoId] = useState<string>(); 
   const toggle = () => setModal(!modal);
@@ -52,6 +67,7 @@ export const DisplayMovies: React.FC<DisplayMoviesProps> = ({ sortedMovies, setS
       <h5>Your favourite videos</h5>
       {gridView ? (
         <GridView
+          pages={{pagesVisited, MOVIES_PER_PAGE}}
           movies={movies}
           handleWatch={handleWatch}
           handleDelete={handleDelete}
@@ -59,14 +75,24 @@ export const DisplayMovies: React.FC<DisplayMoviesProps> = ({ sortedMovies, setS
         />
       ) : (
         <ListView
+          pages={{pagesVisited, MOVIES_PER_PAGE}}
           movies={movies}
           handleWatch={handleWatch}
           handleDelete={handleDelete}
           handleFavourite={handleFavourite}
         />
       )}
-
       <ModalVideo videoId={videoId} toggle={toggle} modal={modal} />
+      <ReactPaginate 
+              previousLabel={"Previous"}
+              nextLabel={"Next"}
+              pageCount={pageCount!}
+              onPageChange={changePage}
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={5}
+              containerClassName="pagination"
+      />
+
     </div>
   );
 };

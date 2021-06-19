@@ -10,6 +10,10 @@ interface GridViewProps {
   handleWatch: (id: string) => void;
   handleDelete: (id: string) => void;
   handleFavourite: (id: string) => void;
+  pages : {
+    pagesVisited: number,
+    MOVIES_PER_PAGE: number,
+  }
 }
 
 export const GridView: React.FC<GridViewProps> = ({
@@ -17,11 +21,15 @@ export const GridView: React.FC<GridViewProps> = ({
   handleWatch,
   handleDelete,
   handleFavourite,
+  pages,
 }) => {
+
   return (
     <div className="movies-container">
-      {movies?.length !== 0
-        ? movies?.map((movie) => (
+      { movies
+        ? movies
+        .slice(pages.pagesVisited, pages.pagesVisited + pages.MOVIES_PER_PAGE)
+        .map((movie) => (
             <div className="movie-card" key={movie.id}>
               <div className="thumbnail-img">
                 <img

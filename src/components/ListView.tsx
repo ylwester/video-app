@@ -9,6 +9,10 @@ interface ListViewProps {
   handleWatch: (id: string) => void;
   handleDelete: (id: string) => void;
   handleFavourite: (id: string) => void;
+  pages : {
+    pagesVisited: number,
+    MOVIES_PER_PAGE: number,
+  }
 }
 
 export const ListView: React.FC<ListViewProps> = ({
@@ -16,11 +20,21 @@ export const ListView: React.FC<ListViewProps> = ({
   handleWatch,
   handleDelete,
   handleFavourite,
+  pages,
 }) => {
+
+  if(movies !== undefined){
+    console.log(pages);
+    const dispMov = movies.slice(pages.pagesVisited, pages.pagesVisited + pages.MOVIES_PER_PAGE);
+    console.log(dispMov);
+  }
+
   return (
     <div className="listview-container">
-      {movies?.length !== 0
-        ? movies?.map((movie) => (
+      {movies 
+        ? movies
+        .slice(pages.pagesVisited, pages.pagesVisited + pages.MOVIES_PER_PAGE)
+        .map((movie) => (
             <div key={movie.id} className="list-item">
               <div className="list-name-header">
                 <div>{movie.title}</div>
