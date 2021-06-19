@@ -38,21 +38,30 @@ export const ListView: React.FC<ListViewProps> = ({
                   </div>
                 </div>
                 <div>
-                <input
-                  type="button"
-                  name="watchbutton"
-                  value="Watch"
-                  onClick={() => handleWatch(movie.id)}
-                />
-                <input
-                  type="button"
-                  name="deletebutton"
-                  value="Delete"
-                  onClick={() => handleDelete(movie.id)}
-                />
-                
-                 <button style={{backgroundColor: "transparent", outline: "none", border: "none"}} onClick={() => handleFavourite(movie.id)}> { movie.favourite ? <IoMdHeart /> : <IoMdHeartEmpty /> } </button>
-                
+                  <input
+                    type="button"
+                    name="watchbutton"
+                    value="Watch"
+                    onClick={() => handleWatch(movie.id)}
+                  />
+                  <input
+                    type="button"
+                    name="deletebutton"
+                    value="Delete"
+                    onClick={() => handleDelete(movie.id)}
+                  />
+
+                  <button
+                    style={{
+                      backgroundColor: "transparent",
+                      outline: "none",
+                      border: "none",
+                    }}
+                    onClick={() => handleFavourite(movie.id)}
+                  >
+                    {" "}
+                    {movie.favourite ? <IoMdHeart /> : <IoMdHeartEmpty />}{" "}
+                  </button>
                 </div>
               </div>
             </div>

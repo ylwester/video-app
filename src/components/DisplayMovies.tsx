@@ -7,14 +7,18 @@ import { ModalVideo } from "./ModalVideo";
 import { ListView } from "./ListView";
 
 interface DisplayMoviesProps {
-  gridView: Boolean;
+  gridView: Boolean,
+  sortedMovies: IMovie[] | undefined,
+  setSortedMovies: React.Dispatch<React.SetStateAction<IMovie[] | undefined>>,
 }
 
-export const DisplayMovies: React.FC<DisplayMoviesProps> = ({ gridView }) => {
+export const DisplayMovies: React.FC<DisplayMoviesProps> = ({ sortedMovies, setSortedMovies, gridView }) => {
   const { movies, setMovies } = useYoutubeMovieContext();
   const [modal, setModal] = useState(false);
-  const [videoId, setVideoId] = useState<string>();
+
+  const [videoId, setVideoId] = useState<string>(); 
   const toggle = () => setModal(!modal);
+
 
   const handleWatch = (id: string) => {
     setVideoId(id);

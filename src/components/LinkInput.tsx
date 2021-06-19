@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as dotenv from "dotenv";
 import axios from "axios";
 import { getYouTubeID } from "../utils/youtubeMovieUtils";
-import { getTodaysDate, saveMovieToLocalStorage } from "../utils/utilities";
+import { getSortedMovies, getTodaysDate, saveMovieToLocalStorage } from "../utils/utilities";
 import "../styles/linkInput.css";
 import { useYoutubeMovieContext } from "../App";
 
@@ -18,7 +18,7 @@ export const LinkInput: React.FC<LinkInputProps> = () => {
   useEffect(() => {
     saveMovieToLocalStorage(movie);
     console.log(JSON.parse(localStorage.getItem("movies")!));
-    setMovies(JSON.parse(localStorage.getItem("movies")!));
+    setMovies(getSortedMovies());
   }, [movie, setMovies]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
