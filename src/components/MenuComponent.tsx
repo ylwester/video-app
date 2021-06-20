@@ -22,6 +22,7 @@ export const MenuComponent: React.FC<MenuComponentProps> = ({
   const { movies, setMovies } = useYoutubeMovieContext();
   const [favouriteFilter, setFavouriteFilter] = useState<Boolean>(false);
   const [sortMethod, setSortMethod] = useState<string>("latest");
+  const [active, setActive] = useState<string>("");
 
   const handleClear = (): void => {
     clearLocalStorage();
@@ -33,6 +34,7 @@ export const MenuComponent: React.FC<MenuComponentProps> = ({
   };
 
   const handleFavourites = () => {
+    active ? setActive("") : setActive("active")
     let result: IMovie[];
     if (favouriteFilter) {
       setMovies(getSortedMovies());
@@ -78,7 +80,7 @@ export const MenuComponent: React.FC<MenuComponentProps> = ({
     <nav className="menu-container">
       <button onClick={handleClear}>Clear library</button>
       <button onClick={() => handleDemoMovies(DEMO_MOVIES)}>Demo</button>
-      <button onClick={handleFavourites}>Favourites</button>
+      <button className={active} onClick={handleFavourites}>Favourites</button>
       <button onClick={handleView}>
         {gridView ? "Display as List" : "Display as Grid"}
       </button>

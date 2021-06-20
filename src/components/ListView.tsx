@@ -37,7 +37,7 @@ export const ListView: React.FC<ListViewProps> = ({
         .map((movie) => (
             <div key={movie.id} className="list-item">
               <div className="list-name-header">
-                <div>{movie.title}</div>
+                <div style={{fontWeight: "bold"}}>{movie.title}</div>
               </div>
               <div className="list-item-content">
                 <div className="content-statistics">
@@ -51,7 +51,7 @@ export const ListView: React.FC<ListViewProps> = ({
                     <BiDislike /> {numberWithCommas(movie.dislikes)}
                   </div>
                 </div>
-                <div>
+                <div className="list-view-buttons">
                   <input
                     type="button"
                     name="watchbutton"
