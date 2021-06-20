@@ -23,12 +23,6 @@ export const ListView: React.FC<ListViewProps> = ({
   pages,
 }) => {
 
-  if(movies !== undefined){
-    console.log(pages);
-    const dispMov = movies.slice(pages.pagesVisited, pages.pagesVisited + pages.MOVIES_PER_PAGE);
-    console.log(dispMov);
-  }
-
   return (
     <div className="listview-container">
       {movies 

@@ -46,7 +46,6 @@ export const LinkInput: React.FC<LinkInputProps> = ({
 
   function fetchData(apiurl: string) {
     let fullMovies : IMovie[] = getSortedMovies();
-    console.log(fullMovies);
     axios
       .get(apiurl)
       .then((response) => {
