@@ -5,19 +5,30 @@ import { getYouTubeID } from "../utils/youtubeMovieUtils";
 import { getSortedMovies, getTodaysDate, saveMovieToLocalStorage } from "../utils/utilities";
 import "../styles/linkInput.css";
 import { useYoutubeMovieContext } from "../App";
+import { Alert } from "reactstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "/home/ylwester/video-app/node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 dotenv.config();
 
-interface LinkInputProps {}
+interface LinkInputProps {
+  favouriteFilter: Boolean,
+  setFavouriteFilter: React.Dispatch<React.SetStateAction<Boolean>>,
+}
 
-export const LinkInput: React.FC<LinkInputProps> = () => {
+export const LinkInput: React.FC<LinkInputProps> = ({  
+  favouriteFilter,
+  setFavouriteFilter}) => {
   const [linkInput, setLinkInput] = useState("");
   const [movie, setMovie] = useState<IMovie>();
-  const { movies, setMovies } = useYoutubeMovieContext();
+  const { setMovies } = useYoutubeMovieContext();
+  const [alertMessage, setAlertMessage] = useState<string>("");
+  const [visible, setVisible] = useState(false);
+
+  const onDismiss = () => setVisible(false);
 
   useEffect(() => {
     saveMovieToLocalStorage(movie);
-    console.log(JSON.parse(localStorage.getItem("movies")!));
     setMovies(getSortedMovies());
   }, [movie, setMovies]);
 
@@ -34,12 +45,14 @@ export const LinkInput: React.FC<LinkInputProps> = () => {
   };
 
   function fetchData(apiurl: string) {
+    let fullMovies : IMovie[] = getSortedMovies();
+    console.log(fullMovies);
     axios
       .get(apiurl)
       .then((response) => {
-        console.log(response);
-        if(movies?.find(movie => movie.id === response.data.items[0].id)){
-          console.log("already exists");
+        if(fullMovies.find(movie => movie.id === response.data.items[0].id)){
+          setAlertMessage("Movie already exists");
+          setVisible(true);
           return;
         }
         setMovie({
@@ -52,6 +65,7 @@ export const LinkInput: React.FC<LinkInputProps> = () => {
           addDate: getTodaysDate(),
           favourite: false,
         });
+        if(favouriteFilter) setFavouriteFilter(!favouriteFilter);
 
       })
       .catch((error) => console.log(error));
@@ -59,6 +73,9 @@ export const LinkInput: React.FC<LinkInputProps> = () => {
 
   return (
     <div className="link-input-container">
+      <Alert color="danger" isOpen={visible} toggle={onDismiss}>
+        {alertMessage}
+      </Alert>
       <form onSubmit={handleSubmit}>
         <input
          className="input-video"

@@ -11,11 +11,11 @@ import '../styles/pagination.css';
 interface DisplayMoviesProps {
   gridView: Boolean,
   pageNumber: number,
-  setPageNumber: React.Dispatch<React.SetStateAction<number>>
+  setPageNumber: React.Dispatch<React.SetStateAction<number>>,
 }
 
 
-export const DisplayMovies: React.FC<DisplayMoviesProps> = ({ pageNumber, setPageNumber, gridView }) => {
+export const DisplayMovies: React.FC<DisplayMoviesProps> = ({ pageNumber, setPageNumber, gridView}) => {
   const { movies, setMovies } = useYoutubeMovieContext();
   const [modal, setModal] = useState(false);
 

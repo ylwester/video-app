@@ -3,7 +3,7 @@ import "./App.css";
 import * as dotenv from "dotenv";
 import { LinkInput } from "./components/LinkInput";
 import { DisplayMovies } from "./components/DisplayMovies";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "/home/ylwester/video-app/node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { MenuComponent } from "./components/MenuComponent";
 import { getSortedMovies } from "./utils/utilities";
 
@@ -22,8 +22,8 @@ export const useYoutubeMovieContext = () => useContext(YoutubeMoviesContext);
 function App() {
   const [movies, setMovies] = useState<IMovie[]>();
   const [gridView, setGridView] = useState<Boolean>(true);
-  const [sortedMovies, setSortedMovies] = useState<IMovie[]>();
   const [pageNumber, setPageNumber] = useState<number>(0)
+  const [favouriteFilter, setFavouriteFilter] = useState<Boolean>(false);
 
   useEffect(() => {
     if (localStorage.getItem("movies")) {
@@ -39,8 +39,8 @@ function App() {
       </header>
       <section className="content-wrapper">
       <YoutubeMoviesContext.Provider value={{ movies, setMovies }}>
-          <LinkInput />
-          <MenuComponent setPageNumber={setPageNumber} sortedMovies={sortedMovies} setSortedMovies={setSortedMovies} gridView={gridView} setGridView={setGridView} />
+          <LinkInput favouriteFilter={favouriteFilter} setFavouriteFilter={setFavouriteFilter} />
+          <MenuComponent favouriteFilter={favouriteFilter} setFavouriteFilter={setFavouriteFilter} setPageNumber={setPageNumber} gridView={gridView} setGridView={setGridView} />
           {movies ?           
           <DisplayMovies pageNumber={pageNumber} setPageNumber={setPageNumber} gridView={gridView} /> 
           : 

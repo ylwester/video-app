@@ -39,7 +39,6 @@ export const getYouTubeID = (url: string) => {
           arrayOfMovies.push(movie);
         });
         localStorage.setItem("movies", JSON.stringify(arrayOfMovies));
-        console.log(JSON.parse(localStorage.getItem("movies")!));
         window.location.reload();
       })
   }

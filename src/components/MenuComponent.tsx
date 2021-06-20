@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useYoutubeMovieContext } from "../App";
 import { clearLocalStorage, getSortedMovies } from "../utils/utilities";
 import { getYoutubeVideos } from "../utils/youtubeMovieUtils";
@@ -7,9 +7,11 @@ import './../styles/menuComponent.css'
 interface MenuComponentProps {
   gridView: Boolean;
   setGridView: React.Dispatch<React.SetStateAction<Boolean>>;
-  sortedMovies: IMovie[] | undefined;
-  setSortedMovies: React.Dispatch<React.SetStateAction<IMovie[] | undefined>>;
+  // sortedMovies: IMovie[] | undefined;
+  // setSortedMovies: React.Dispatch<React.SetStateAction<IMovie[] | undefined>>;
   setPageNumber: React.Dispatch<React.SetStateAction<number>>
+  favouriteFilter: Boolean,
+  setFavouriteFilter: React.Dispatch<React.SetStateAction<Boolean>>,
 }
 
 const DEMO_MOVIES = ["g0kgw2kkFnM", "IFAF3NYM_KI", "kXYiU_JCYtU", "eVTXPUF4Oz4", "YlUKcNNmywk", "t4O1LLk6qlY", "vx2u5uUu3DE", "RgKAFK5djSk", "60ItHLz5WEA", "j5-yKhDd64s"];
@@ -18,11 +20,16 @@ export const MenuComponent: React.FC<MenuComponentProps> = ({
   gridView,
   setGridView,
   setPageNumber,
+  favouriteFilter,
+  setFavouriteFilter,
 }) => {
   const { movies, setMovies } = useYoutubeMovieContext();
-  const [favouriteFilter, setFavouriteFilter] = useState<Boolean>(false);
   const [sortMethod, setSortMethod] = useState<string>("latest");
   const [active, setActive] = useState<string>("");
+
+  useEffect(()=> {
+    favouriteFilter ? setActive("active") : setActive("")
+  },[setActive, favouriteFilter])
 
   const handleClear = (): void => {
     clearLocalStorage();
@@ -33,18 +40,17 @@ export const MenuComponent: React.FC<MenuComponentProps> = ({
     getYoutubeVideos(array);
   };
 
-  const handleFavourites = () => {
-    active ? setActive("") : setActive("active")
+  const handleFavourites = (event: any) => {
     let result: IMovie[];
     if (favouriteFilter) {
-      setMovies(getSortedMovies());
       setFavouriteFilter(false);
-        setPageNumber(0);
+      setSortMethod('latest')
+      setMovies(getSortedMovies());
+      setPageNumber(0);
       return;
     }
     if (movies) {
       result = movies.filter((movie) => movie.favourite);
-      console.log(result);
       setMovies(result);
       setFavouriteFilter(true);
       setPageNumber(0);
@@ -57,7 +63,6 @@ export const MenuComponent: React.FC<MenuComponentProps> = ({
 
   const handleSort = (event: any) => {
     setSortMethod(event.target.value);
-
     if (sortMethod === "oldest") {
       setMovies(
         [...movies!].sort(function (a: IMovie, b: IMovie) {

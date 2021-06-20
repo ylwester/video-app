@@ -28,7 +28,6 @@ export function getTodaysDate(): string {
 
 export function saveMovieToLocalStorage(movie: IMovie | undefined) {
   let moviesStorage = JSON.parse(localStorage.getItem("movies")!) || [];
-  console.log(typeof moviesStorage);
   moviesStorage.push(movie);
 
   if (!movie) return;

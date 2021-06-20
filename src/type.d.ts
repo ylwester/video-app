@@ -8,3 +8,9 @@ interface IMovie {
     addDate: string,
     favourite?: boolean 
   }
+
+  interface FavoritesType {
+    isSet: Boolean,
+    className: string,
+  }
+  

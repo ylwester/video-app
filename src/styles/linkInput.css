@@ -1,6 +1,7 @@
 .link-input-container {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     padding: 0 10px 10px 10px;
     max-width: 1000px;
     width: 100%;
