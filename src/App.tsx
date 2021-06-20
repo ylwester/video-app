@@ -1,12 +1,12 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import "./App.css";
-import * as dotenv from "dotenv";
+// import * as dotenv from "dotenv";
 import { LinkInput } from "./components/LinkInput";
 import { DisplayMovies } from "./components/DisplayMovies";
 import { MenuComponent } from "./components/MenuComponent";
 import { getSortedMovies } from "./utils/utilities";
 
-dotenv.config();
+// dotenv.config();
 
 interface MoviesContextType {
   movies: IMovie[] | undefined;

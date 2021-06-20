@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import * as dotenv from "dotenv";
+// import * as dotenv from "dotenv";
 import axios from "axios";
 import { getYouTubeID } from "../utils/youtubeMovieUtils";
 import { getSortedMovies, getTodaysDate, saveMovieToLocalStorage } from "../utils/utilities";
@@ -7,7 +7,7 @@ import "../styles/linkInput.css";
 import { useYoutubeMovieContext } from "../App";
 import { Alert } from "reactstrap";
 
-dotenv.config();
+// dotenv.config();
 
 interface LinkInputProps {
   favouriteFilter: Boolean,
