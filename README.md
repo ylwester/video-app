@@ -23,6 +23,8 @@ Then, to start app in development mode, run:
 
 ## Live version
 
+You can load hardcoded youtube movies, by clicking "Demo"
+
 https://mighty-coast-95648.herokuapp.com/
 
 ## Authors
