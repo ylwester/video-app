@@ -3,7 +3,6 @@ import "./App.css";
 import * as dotenv from "dotenv";
 import { LinkInput } from "./components/LinkInput";
 import { DisplayMovies } from "./components/DisplayMovies";
-import "/home/ylwester/video-app/node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { MenuComponent } from "./components/MenuComponent";
 import { getSortedMovies } from "./utils/utilities";
 
