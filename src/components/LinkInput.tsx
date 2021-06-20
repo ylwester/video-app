@@ -6,8 +6,6 @@ import { getSortedMovies, getTodaysDate, saveMovieToLocalStorage } from "../util
 import "../styles/linkInput.css";
 import { useYoutubeMovieContext } from "../App";
 import { Alert } from "reactstrap";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import "/home/ylwester/video-app/node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 dotenv.config();
 
