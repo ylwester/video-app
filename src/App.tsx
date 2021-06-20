@@ -40,11 +40,8 @@ function App() {
       <section className="content-wrapper">
       <YoutubeMoviesContext.Provider value={{ movies, setMovies }}>
           <LinkInput favouriteFilter={favouriteFilter} setFavouriteFilter={setFavouriteFilter} />
-          <MenuComponent favouriteFilter={favouriteFilter} setFavouriteFilter={setFavouriteFilter} setPageNumber={setPageNumber} gridView={gridView} setGridView={setGridView} />
-          {movies ?           
+          <MenuComponent favouriteFilter={favouriteFilter} setFavouriteFilter={setFavouriteFilter} setPageNumber={setPageNumber} gridView={gridView} setGridView={setGridView} />       
           <DisplayMovies pageNumber={pageNumber} setPageNumber={setPageNumber} gridView={gridView} /> 
-          : 
-          "Loading" }
       </YoutubeMoviesContext.Provider>
       </section>
     </div>

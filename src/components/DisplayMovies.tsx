@@ -25,6 +25,9 @@ export const DisplayMovies: React.FC<DisplayMoviesProps> = ({ pageNumber, setPag
   let pageCount : number;
   if(movies)
     pageCount = Math.ceil(movies.length / MOVIES_PER_PAGE);
+  
+  if(!movies)
+  pageCount = 0;
 
     const changePage = ({ selected } : any) => {
       setPageNumber(selected);
@@ -74,6 +77,8 @@ export const DisplayMovies: React.FC<DisplayMoviesProps> = ({ pageNumber, setPag
               forcePage={pageNumber}
       />
       </div>
+      { movies?.length !== 0 && movies ?
+      <>
       {gridView ? (
         <GridView
           pages={{pagesVisited, MOVIES_PER_PAGE}}
@@ -91,8 +96,9 @@ export const DisplayMovies: React.FC<DisplayMoviesProps> = ({ pageNumber, setPag
           handleFavourite={handleFavourite}
         />
       )}
-      <ModalVideo videoId={videoId} toggle={toggle} modal={modal} />
 
+      <ModalVideo videoId={videoId} toggle={toggle} modal={modal} />
+     </> : "Add some movies first!"}
     </div>
   );
 };

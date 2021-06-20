@@ -5,6 +5,14 @@ You can add video via link to movie, or video ID. There are functionalities like
 
 ## How to install app
 
+At first, to install all dependencies, in project directory run:
+
+### `npm install`
+
+Then, to start app in development mode, run:
+
+### `npm start`
+
 
 ## Technologies
 * TypeScript
