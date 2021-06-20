@@ -13,6 +13,7 @@ Then, to start app in development mode, run:
 
 ### `npm start`
 
+You would need to create .env file with your own YouTube API keys.
 
 ## Technologies
 * TypeScript
