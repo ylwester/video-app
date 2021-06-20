@@ -1,10 +1,10 @@
 .movie-card {
-    border: 1px solid black;
+    /* border: 1px solid #B2BEB5; */
     width: 320px;
-    padding: 10px;
-    margin: 0;
+    /* padding: 10px; */
     display: flex;
     flex-direction: column;
+    margin-bottom: 20px;
 }
 
 .card-statistics {
@@ -13,10 +13,16 @@
 }
 
 .thumbnail-img img {
-    width: 298px; 
+    width: 318px; 
     height: 163px;
 }
+.card-title {
+    font-weight: bold;
+}
 
+.thumbnail-img img:hover {
+    cursor: pointer;
+}
 
 .likes-container {
     display: flex;

@@ -35,6 +35,7 @@ export const GridView: React.FC<GridViewProps> = ({
                 <img
                   src={movie.thumbnail}
                   alt={movie.title}
+                  onClick={() => handleWatch(movie.id)}
                 />
               </div>
               <div className="card-statistics">

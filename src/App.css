@@ -1,11 +1,16 @@
 body {
     margin: auto;
+    background-color: #f9f9f9!important;
+    font-size: 0.9rem!important;
 }
 
 .App {
     margin: 0 auto;
-    max-width: 1200px;
-    padding: 10px;
+    max-width: 1000px;
+}
+.App-header {
+    margin-top: 10px;
+    margin-bottom: 0;
 }
 
 header {

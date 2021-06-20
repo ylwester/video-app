@@ -2,19 +2,22 @@ import React, { useState } from "react";
 import { useYoutubeMovieContext } from "../App";
 import { clearLocalStorage, getSortedMovies } from "../utils/utilities";
 import { getYoutubeVideos } from "../utils/youtubeMovieUtils";
+import './../styles/menuComponent.css'
 
 interface MenuComponentProps {
   gridView: Boolean;
   setGridView: React.Dispatch<React.SetStateAction<Boolean>>;
   sortedMovies: IMovie[] | undefined;
   setSortedMovies: React.Dispatch<React.SetStateAction<IMovie[] | undefined>>;
+  setPageNumber: React.Dispatch<React.SetStateAction<number>>
 }
 
-const DEMO_MOVIES = ["pImrABc4s58", "AmUrarx3_0U", "zUaMZzKgxo0"];
+const DEMO_MOVIES = ["g0kgw2kkFnM", "IFAF3NYM_KI", "kXYiU_JCYtU", "eVTXPUF4Oz4", "YlUKcNNmywk", "t4O1LLk6qlY", "vx2u5uUu3DE", "RgKAFK5djSk", "60ItHLz5WEA", "j5-yKhDd64s"];
 
 export const MenuComponent: React.FC<MenuComponentProps> = ({
   gridView,
   setGridView,
+  setPageNumber,
 }) => {
   const { movies, setMovies } = useYoutubeMovieContext();
   const [favouriteFilter, setFavouriteFilter] = useState<Boolean>(false);
@@ -34,6 +37,7 @@ export const MenuComponent: React.FC<MenuComponentProps> = ({
     if (favouriteFilter) {
       setMovies(getSortedMovies());
       setFavouriteFilter(false);
+        setPageNumber(0);
       return;
     }
     if (movies) {
@@ -41,6 +45,7 @@ export const MenuComponent: React.FC<MenuComponentProps> = ({
       console.log(result);
       setMovies(result);
       setFavouriteFilter(true);
+      setPageNumber(0);
     }
   };
 
@@ -70,7 +75,7 @@ export const MenuComponent: React.FC<MenuComponentProps> = ({
   };
 
   return (
-    <nav>
+    <nav className="menu-container">
       <button onClick={handleClear}>Clear library</button>
       <button onClick={() => handleDemoMovies(DEMO_MOVIES)}>Demo</button>
       <button onClick={handleFavourites}>Favourites</button>

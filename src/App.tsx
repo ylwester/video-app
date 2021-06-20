@@ -23,6 +23,7 @@ function App() {
   const [movies, setMovies] = useState<IMovie[]>();
   const [gridView, setGridView] = useState<Boolean>(true);
   const [sortedMovies, setSortedMovies] = useState<IMovie[]>();
+  const [pageNumber, setPageNumber] = useState<number>(0)
 
   useEffect(() => {
     if (localStorage.getItem("movies")) {
@@ -34,13 +35,16 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>Your favourite YouTube movies</p>
+        <h3>YouTube video library</h3>
       </header>
       <section className="content-wrapper">
       <YoutubeMoviesContext.Provider value={{ movies, setMovies }}>
           <LinkInput />
-          <MenuComponent sortedMovies={sortedMovies} setSortedMovies={setSortedMovies} gridView={gridView} setGridView={setGridView} />
-          <DisplayMovies sortedMovies={sortedMovies} setSortedMovies={setSortedMovies} gridView={gridView} />
+          <MenuComponent setPageNumber={setPageNumber} sortedMovies={sortedMovies} setSortedMovies={setSortedMovies} gridView={gridView} setGridView={setGridView} />
+          {movies ?           
+          <DisplayMovies pageNumber={pageNumber} setPageNumber={setPageNumber} gridView={gridView} /> 
+          : 
+          "Loading" }
       </YoutubeMoviesContext.Provider>
       </section>
     </div>

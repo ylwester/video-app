@@ -10,18 +10,17 @@ import '../styles/pagination.css';
 
 interface DisplayMoviesProps {
   gridView: Boolean,
-  sortedMovies: IMovie[] | undefined,
-  setSortedMovies: React.Dispatch<React.SetStateAction<IMovie[] | undefined>>,
+  pageNumber: number,
+  setPageNumber: React.Dispatch<React.SetStateAction<number>>
 }
 
 
-export const DisplayMovies: React.FC<DisplayMoviesProps> = ({ sortedMovies, setSortedMovies, gridView }) => {
+export const DisplayMovies: React.FC<DisplayMoviesProps> = ({ pageNumber, setPageNumber, gridView }) => {
   const { movies, setMovies } = useYoutubeMovieContext();
   const [modal, setModal] = useState(false);
-  const [pageNumber, setPageNumber] = useState<number>(0)
 
   const MOVIES_PER_PAGE = 9;
-  const pagesVisited = pageNumber * MOVIES_PER_PAGE;
+  let pagesVisited = pageNumber * MOVIES_PER_PAGE;
 
   let pageCount : number;
   if(movies)
@@ -38,8 +37,6 @@ export const DisplayMovies: React.FC<DisplayMoviesProps> = ({ sortedMovies, setS
   const handleWatch = (id: string) => {
     setVideoId(id);
     toggle();
-
-    console.log("watch clicked");
   };
 
   const handleDelete = (id: string) => {
@@ -49,8 +46,6 @@ export const DisplayMovies: React.FC<DisplayMoviesProps> = ({ sortedMovies, setS
       refreshLocalStorage(movies);
       setMovies(JSON.parse(localStorage.getItem("movies")!));
     }
-
-    console.log("delete clicked" + id);
   };
 
   const handleFavourite = (id: string) => {
@@ -59,12 +54,26 @@ export const DisplayMovies: React.FC<DisplayMoviesProps> = ({ sortedMovies, setS
       movies[result].favourite = !movies[result].favourite;
       refreshLocalStorage(movies);
       setMovies(JSON.parse(localStorage.getItem("movies")!));
-    }
+    } 
   };
 
   return (
     <div className="content">
-      <h5>Your favourite videos</h5>
+      <div className="videos-header">
+      <h5>Your videos</h5>
+      <ReactPaginate 
+              previousLabel={"Previous"}
+              nextLabel={"Next"}
+              pageCount={pageCount!}
+              onPageChange={changePage}
+              marginPagesDisplayed={1}
+              pageRangeDisplayed={2}
+              containerClassName="pagination"
+              activeLinkClassName="pagination-active-link"
+              disabledClassName="pagination-disabled"
+              forcePage={pageNumber}
+      />
+      </div>
       {gridView ? (
         <GridView
           pages={{pagesVisited, MOVIES_PER_PAGE}}
@@ -83,15 +92,6 @@ export const DisplayMovies: React.FC<DisplayMoviesProps> = ({ sortedMovies, setS
         />
       )}
       <ModalVideo videoId={videoId} toggle={toggle} modal={modal} />
-      <ReactPaginate 
-              previousLabel={"Previous"}
-              nextLabel={"Next"}
-              pageCount={pageCount!}
-              onPageChange={changePage}
-              marginPagesDisplayed={2}
-              pageRangeDisplayed={5}
-              containerClassName="pagination"
-      />
 
     </div>
   );

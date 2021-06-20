@@ -61,6 +61,7 @@ export const LinkInput: React.FC<LinkInputProps> = () => {
     <div className="link-input-container">
       <form onSubmit={handleSubmit}>
         <input
+         className="input-video"
           type="text"
           value={linkInput}
           onChange={(e) => setLinkInput(e.target.value)}

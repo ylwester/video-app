@@ -2,4 +2,39 @@
     list-style: none;
     display:flex;
     justify-content: center;
+    user-select: none;
+}
+
+.pagination a {
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: lightgray;
+    border: 1px solid rgb(197, 193, 193);
+    cursor: pointer;
+    transition: all 200ms ease;
+}
+
+.pagination a:hover {
+    background-color: gray;
+    border: 1px solid transparent;
+    color: white!important
+}
+
+.pagination-active-link {
+    background-color: gray!important;
+    text-decoration: none;
+    border: 1px solid transparent;
+    color: white!important
+}
+
+.pagination-disabled {
+    color: gray;
+
+}
+
+.pagination-disabled a:hover {
+    background-color: lightgray;
+    color: gray!important;
+    cursor: default;
 }
