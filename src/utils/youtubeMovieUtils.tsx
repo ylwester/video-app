@@ -1,7 +1,7 @@
 import axios from "axios";
-import * as dotenv from "dotenv";
+// import * as dotenv from "dotenv";
 import { getTodaysDate } from "./utilities";
-dotenv.config();
+// dotenv.config();
 
 export const getYouTubeID = (url: string) => {
     const [a, , b] = url
