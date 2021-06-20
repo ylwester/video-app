@@ -23,7 +23,7 @@ Then, to start app in development mode, run:
 
 ## Live version
 
-https://ancient-springs-81215.herokuapp.com/
+
 
 ## Authors
 
